@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: zuul
+
+server:
+  port: 8771
+
+zuul:
+  routes:
+    user:
+      path: /user/**
+      serviceId: user
+    merchant:
+      path: /merchant/**
+      serviceId: merchant
+  sensitive-headers: Cookie,Set-Cookie,Authorization,Uid
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000

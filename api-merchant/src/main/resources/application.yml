@@ -1,6 +1,6 @@
 spring:
   application:
-    name: merchant
+    name: api-merchant
 
 server:
   port: 9020

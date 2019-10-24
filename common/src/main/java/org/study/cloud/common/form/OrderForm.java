@@ -1,4 +1,4 @@
-package org.study.cloud.ordercommon.form;
+package org.study.cloud.common.form;
 
 import lombok.Data;
 import org.study.cloud.common.model.PageForm;

@@ -43,10 +43,11 @@ public class Result<T> {
     }
 
     public static Result error() {
-        Result<Object> result = new Result<>();
-        result.setCode(ResultCodeEnum.FAILURE.getCode());
-        result.setMsg("error");
-        return result;
+        return Result.from(ResultCodeEnum.FAILURE);
+    }
+
+    public static Result hystrix() {
+        return Result.from(ResultCodeEnum.HYSTRIX);
     }
 
     public static Result error(String msg) {

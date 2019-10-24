@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="applicationName" value="api-merchant" />
+    <property name="logPath" value="/opt/deploy/logs/${applicationName}" />
+    <!--格式变量使用有问题，类和方法不识别-->
+    <!--
+        <property name="logFormat" value="%d{yyyy-MM-dd} %d{HH:mm:ss.SSS}\t${applicationName}\t%p\t[%thread]\t[%C.%M\(%L\)]\t&#45;&#45;\t%msg %n" />
+    -->
+
+    <!--系统info日志-->
+    <appender name="infoRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${logPath}/info.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxHistory>1</maxHistory>
+            <!-- 触发策略，达到一定条件时将通知appender，触发滚动 -->
+            <maxFileSize>150MB</maxFileSize>
+            <totalSizeCap>300MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>
+                %d{yyyy-MM-dd} %d{HH:mm:ss.SSS}\t${applicationName}\t%p\t[%thread]\t[%C.%M\(%L\)]\t[%X{traceId}]\t--\t%msg %n
+            </Pattern>
+        </encoder>
+    </appender>
+
+    <!--系统warn日志-->
+    <appender name="warnRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${logPath}/warn.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <maxHistory>1</maxHistory>
+            <!-- 触发策略，达到一定条件时将通知appender，触发滚动 -->
+            <maxFileSize>50MB</maxFileSize>
+            <totalSizeCap>100MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>
+                %d{yyyy-MM-dd} %d{HH:mm:ss.SSS}\t${applicationName}\t%p\t[%thread]\t[%C.%M\(%L\)]\t[%X{traceId}]\t--\t%msg %n
+            </Pattern>
+        </encoder>
+    </appender>
+
+    <!--错误日志-->
+    <appender name="errorRollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${logPath}/error.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!--只保存一天的日志-->
+            <maxHistory>1</maxHistory>
+            <!-- 每个文件最大值，后缀滚动加1 -->
+            <maxFileSize>50MB</maxFileSize>
+            <!--所有日志文件综合最大值-->
+            <totalSizeCap>100MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>
+                %d{yyyy-MM-dd} %d{HH:mm:ss.SSS}\t${applicationName}\t%p\t[%thread]\t[%C.%M\(%L\)]\t[%X{traceId}]\t--\t%msg %n
+            </Pattern>
+        </encoder>
+    </appender>
+
+    <!--开发控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8">
+            <pattern>
+                %d{yyyy-MM-dd} %d{HH:mm:ss.SSS}\t${applicationName}\t%p\t[%thread]\t[%C.%M\(%L\)]\t[%X{traceId}]\t--\t%msg %n
+            </pattern>
+        </encoder>
+    </appender>
+
+
+    <!--异步输出，有问题，类和方法输出问号-->
+    <appender name="infoRollingFileAsync" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>10</queueSize>
+        <appender-ref ref="infoRollingFile"/>
+    </appender>
+    <appender name="warnRollingFileAsync" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>10</queueSize>
+        <appender-ref ref="warnRollingFile"/>
+    </appender>
+    <appender name="errorRollingFileAsync" class="ch.qos.logback.classic.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <queueSize>10</queueSize>
+        <appender-ref ref="errorRollingFile"/>
+    </appender>
+
+
+    <!--日志输出包-->
+    <logger name="org.study.cloud" level="INFO">
+        <appender-ref ref="infoRollingFile"/>
+    </logger>
+
+    <root level="WARN">
+        <appender-ref ref="warnRollingFile" />
+    </root>
+
+    <!-- 所有的异常，打印到error -->
+    <root level="ERROR">
+        <appender-ref ref="errorRollingFile" />
+    </root>
+
+    <root level="info">
+        <appender-ref ref="console" />
+    </root>
+
+</configuration>

@@ -1,12 +1,13 @@
 package org.study.cloud.merchant.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.study.cloud.ordercommon.dto.OrderDTO;
-import org.study.cloud.ordercommon.form.OrderForm;
+import org.study.cloud.common.feign.ApiOrderFeign;
+import org.study.cloud.common.form.OrderForm;
+import org.study.cloud.common.model.Result;
 
-import java.util.Collections;
-import java.util.Date;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Administrator on 2019\8\17 0017.
@@ -14,15 +15,12 @@ import java.util.Date;
 @RequestMapping("order")
 @RestController
 public class OrderController {
+    @Autowired
+    private ApiOrderFeign apiOrderFeign;
 
-    //zuul转发： http://localhost:8771/merchant/order/listOrder, 转发成http://windows10.microdone.cn:9020/order/listOrder
-    //直接请求： http://localhost:9020/order/listOrder
     @RequestMapping("listOrder")
-    public Object listOrder(OrderForm form) {
-        OrderDTO dto = new OrderDTO();
-        dto.setMoney("12.3");
-        dto.setOrderNo("merchantNo");
-        dto.setCreateTime(new Date());
-        return Collections.singletonList(dto);
+    public Result listOrder(OrderForm form, HttpServletRequest request) {
+        Result result = apiOrderFeign.listOrder(form, request);
+        return result;
     }
 }

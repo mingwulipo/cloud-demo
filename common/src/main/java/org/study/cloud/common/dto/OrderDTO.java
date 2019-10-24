@@ -1,6 +1,8 @@
-package org.study.cloud.ordercommon.dto;
+package org.study.cloud.common.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+import org.study.cloud.common.constant.DateConstant;
 
 import java.util.Date;
 
@@ -12,5 +14,7 @@ public class OrderDTO {
     private Integer id;
     private String orderNo;
     private String money;
+
+    @JsonFormat(pattern = DateConstant.DATE_TIME, timezone = DateConstant.TIME_ZONE)
     private Date createTime;
 }

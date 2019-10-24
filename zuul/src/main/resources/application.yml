@@ -10,11 +10,14 @@ server:
 zuul:
   routes:
     user:
-      path: /user/**
-      serviceId: user
+      path: /api-user/**
+      serviceId: api-user
     merchant:
-      path: /merchant/**
-      serviceId: merchant
+      path: /api-merchant/**
+      serviceId: api-merchant
+    order:
+      path: /api-order/**
+      serviceId: api-order
   sensitive-headers: Cookie,Set-Cookie,Authorization,Uid
 
 eureka:

@@ -14,7 +14,7 @@ import java.io.OutputStream;
 /**
  * Created by Administrator on 2019\8\17 0017.
  */
-@Component
+//@Component
 public class CrosFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

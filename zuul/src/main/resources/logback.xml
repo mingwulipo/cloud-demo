@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="applicationName" value="api-user" />
+    <property name="applicationName" value="zuul" />
     <property name="logPath" value="/opt/deploy/logs/${applicationName}" />
     <!--格式变量使用有问题，类和方法不识别-->
     <!--
@@ -24,7 +24,6 @@
         </rollingPolicy>
         <encoder>
             <Pattern>
-                <!--添加sleuth依赖，traceId就能打印-->
                 %d{yyyy-MM-dd} %d{HH:mm:ss.SSS}\t${applicationName}\t%p\t[%thread]\t[%C.%M\(%L\)]\t[%X{traceId}]\t--\t%msg %n
             </Pattern>
         </encoder>

@@ -7,11 +7,14 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/mingwulipo/config-repertory.git
+          uri: https://github.com/mingwulipo/cloud-demo.git
           username: mingwulipo
           password: github8278784
           label: master
-
+          #仓库路径
+          searchPaths: config-repertory
+          #加载到本地目录
+          basedir: ./config-repo:
 
 server:
   port: 9050

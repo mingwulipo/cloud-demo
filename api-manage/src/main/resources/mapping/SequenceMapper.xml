@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.study.cloud.manage.mapper.SequenceMapper">
+  <resultMap id="BaseResultMap" type="org.study.cloud.common.entity.Sequence">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="seq_name" jdbcType="VARCHAR" property="seqName" />
+    <result column="init_value" jdbcType="BIGINT" property="initValue" />
+    <result column="increment_value" jdbcType="BIGINT" property="incrementValue" />
+    <result column="current_value" jdbcType="BIGINT" property="currentValue" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    id, seq_name, init_value, increment_value, current_value
+  </sql>
+</mapper>

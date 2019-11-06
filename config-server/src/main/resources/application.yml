@@ -14,7 +14,7 @@ spring:
           #仓库路径
           searchPaths: config-repertory
           #加载到本地目录
-          basedir: ./config-repo:
+          basedir: ./config-repo
 
 server:
   port: 9050

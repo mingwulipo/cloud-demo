@@ -17,6 +17,7 @@
         <module>api-order</module>
         <module>api-manage</module>
         <module>config-server</module>
+        <module>generator</module>
     </modules>
 
 

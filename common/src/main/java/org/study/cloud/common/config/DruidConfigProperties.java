@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-@ConfigurationProperties(prefix = "spring.datasource.fun")
+@ConfigurationProperties(prefix = "spring.datasource")
 class DruidConfigProperties {
 
     private String driverClassName;

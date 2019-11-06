@@ -11,10 +11,10 @@ spring:
           username: mingwulipo
           password: github8278784
           label: master
-          #仓库路径
+          #仓库目录
           searchPaths: config-repertory
-          #加载到本地目录
-          basedir: ./config-repo
+          #加载到本地目录，把整个git仓库拷贝到本地了，不是只拷贝searchPaths指定的目录
+          #basedir: ./config-repo
 
 server:
   port: 9050

@@ -9,6 +9,6 @@ import lombok.ToString;
 @Data
 @ToString(callSuper = true)
 public class PageForm extends BaseForm {
-    private Integer pageNum;
-    private Integer pageSize;
+    private Integer pageNum = 1;
+    private Integer pageSize = 10;
 }

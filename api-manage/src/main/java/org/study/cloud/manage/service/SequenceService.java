@@ -2,6 +2,7 @@ package org.study.cloud.manage.service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.github.pagehelper.page.PageMethod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.study.cloud.common.entity.Sequence;
@@ -22,8 +23,8 @@ public class SequenceService {
     private SequenceMapper sequenceMapper;
 
     public Result list(SequenceForm sequenceForm) {
-        PageHelper.startPage(sequenceForm.getPageNum(), sequenceForm.getPageSize());
-        List<Sequence> list = sequenceMapper.selectAll();
+        PageMethod.startPage(sequenceForm.getPageNum(), sequenceForm.getPageSize());
+        List<Sequence> list = sequenceMapper.list();
         return Result.ok(new PageInfo<>(list));
     }
 

@@ -13,7 +13,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
@@ -28,8 +27,6 @@ import java.util.Map;
 @MapperScan(basePackages = {"org.study.cloud.*.mapper"})
 public class DruidConfig {
 
-    @Autowired
-    private Environment env;
     @Autowired
     private DruidConfigProperties druidProperties;
 

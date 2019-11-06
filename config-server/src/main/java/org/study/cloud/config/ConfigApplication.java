@@ -8,6 +8,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
+ * 测试成功http://localhost:9050/environment/dev
+ * 成功返回：{"name":"environment","profiles":["dev"],"label":null,"version":"ae45791d8c641a1044f003ca352612e1d2d3d5eb","state":null,"propertySources":[]}
  * @author lipo
  * @version v1.0
  * @date 2019-11-05 17:53

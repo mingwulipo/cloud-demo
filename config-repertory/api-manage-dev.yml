@@ -33,3 +33,14 @@ spring:
       useGlobalDataSourceStat: true
 
 environment: dev
+
+#ElasticSearch配置
+  elasticsearch:
+    host: 47.103.116.160
+    port: 9200
+    account:
+    password:
+    schema: http
+    connectTimeout: 1000
+    socketTimeout: 5000
+

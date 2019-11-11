@@ -1,4 +1,4 @@
-package org.study.cloud.common.config;
+package org.study.cloud.common.config.mysql;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
@@ -28,7 +28,7 @@ import java.util.Map;
 public class DruidConfig {
 
     @Autowired
-    private DruidConfigProperties druidProperties;
+    private DruidProperties druidProperties;
 
     @Bean
     public DataSource druid() {

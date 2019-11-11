@@ -1,4 +1,4 @@
-package org.study.cloud.common.config;
+package org.study.cloud.common.config.mysql;
 
 
 import lombok.Data;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Data
 @ConfigurationProperties(prefix = "spring.datasource.fun")
-class DruidConfigProperties {
+class DruidProperties {
 
     private String driverClassName;
     private String url;

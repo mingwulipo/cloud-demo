@@ -20,7 +20,7 @@ public class OrderController {
 
     @RequestMapping("listOrder")
     public Result listOrder(OrderForm form, HttpServletRequest request) {
-        Result result = apiOrderFeign.listOrder(form, request);
+        Result result = apiOrderFeign.listOrder(form);
         return result;
     }
 }

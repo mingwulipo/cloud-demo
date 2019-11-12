@@ -1,4 +1,5 @@
 spring:
+  #配置仓库文件修改后，必须删除本地目录，启动一个项目，才能生效
   #配置中心连接信息，必须在bootstrap中，其他配置可以在application中
   #配置中心，成功后启动，在springboot图标下面显示，Fetching config from server at : http://localhost:9050
   #在下面一行显示，Located environment: name=api-manage, profiles=[dev], label=master, version=e374db5fd8052eaa345706d8dcc2a004bfd8390f, state=null

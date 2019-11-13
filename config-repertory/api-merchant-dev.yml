@@ -32,6 +32,19 @@ spring:
       # 合并多个DruidDataSource的监控数据
       useGlobalDataSourceStat: true
 
+  redis:
+    database: 0
+    host: 47.103.116.160
+    port: 8226
+    password: Zc2019YuRenJie
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    timeout: 2000ms
+
 environment: dev
 
 #ElasticSearch配置

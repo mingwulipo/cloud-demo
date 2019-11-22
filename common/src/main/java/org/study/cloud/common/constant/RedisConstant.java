@@ -7,4 +7,6 @@ package org.study.cloud.common.constant;
  */
 public interface RedisConstant {
     String TOPIC = "TOPIC";
+    String MQ_LIST = "MQ_LIST";
+    String CONSUME_REDIS_LIST = "CONSUME_REDIS_LIST";
 }

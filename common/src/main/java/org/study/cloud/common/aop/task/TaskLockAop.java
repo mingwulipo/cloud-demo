@@ -1,6 +1,5 @@
 package org.study.cloud.common.aop.task;
 
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.redis.util.RedisLockRegistry;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
@@ -20,7 +20,6 @@ import java.util.concurrent.locks.Lock;
  */
 @Component
 @Aspect
-@Slf4j
 public class TaskLockAop {
 
     @Autowired
@@ -34,14 +33,14 @@ public class TaskLockAop {
         String lockKey = taskAnnotation.value();
         Lock lock = redisLockRegistry.obtain(lockKey);
         try {
-            lock.tryLock(30L, TimeUnit.SECONDS);
-            log.info("任务开始, {}", lockKey);
+            lock.tryLock(10L, TimeUnit.SECONDS);
+            System.out.println("任务开始, " + lockKey + ", " + new Date());
 
             return pjp.proceed();
 
         } finally {
             lock.unlock();
-            log.info("任务结束, ", lockKey);
+            System.out.println("任务结束, " + lockKey + ", " + new Date());
         }
     }
 

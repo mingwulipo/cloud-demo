@@ -26,8 +26,9 @@ public class RedisService {
     public void consumeMqList() {
         ListOperations<String, String> listOperations = redisTemplate.opsForList();
         //0时间，表示阻塞永久
-        String s = listOperations.rightPop(RedisConstant.MQ_LIST, 0L, TimeUnit.SECONDS);
-        //String s = listOperations.rightPop(RedisConstant.MQ_LIST);
+        //待机一小时后，再次发消息，消费不了了，阻塞有问题啊。还得轮寻啊
+        //String s = listOperations.rightPop(RedisConstant.MQ_LIST, 0L, TimeUnit.SECONDS);
+        String s = listOperations.rightPop(RedisConstant.MQ_LIST);
         if (s == null) {
             return;
         }

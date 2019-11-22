@@ -18,7 +18,7 @@ public class RedisConsumeTask {
     private RedisService redisService;
 
     @TaskLock(RedisConstant.CONSUME_REDIS_LIST)
-    @Scheduled(cron = "0/1 * * * * ?")
+    @Scheduled(cron = "0/10 * * * * ?")
     public void consumeMqList() {
         redisService.consumeMqList();
     }

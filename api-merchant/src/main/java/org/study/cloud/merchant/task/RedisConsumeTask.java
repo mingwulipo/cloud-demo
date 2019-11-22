@@ -17,9 +17,15 @@ public class RedisConsumeTask {
     @Autowired
     private RedisService redisService;
 
-    @TaskLock(RedisConstant.CONSUME_REDIS_LIST)
+    @TaskLock(RedisConstant.CONSUME_REDIS_LIST_TASK)
     @Scheduled(cron = "0/10 * * * * ?")
     public void consumeMqList() {
         redisService.consumeMqList();
+    }
+
+    @TaskLock(RedisConstant.CONSUME_REDIS_ZSET_TASK)
+    @Scheduled(cron = "0/10 * * * * ?")
+    public void consumeMqZset() {
+        redisService.consumeMqZset();
     }
 }

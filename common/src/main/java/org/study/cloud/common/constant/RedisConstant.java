@@ -8,5 +8,7 @@ package org.study.cloud.common.constant;
 public interface RedisConstant {
     String TOPIC = "TOPIC";
     String MQ_LIST = "MQ_LIST";
-    String CONSUME_REDIS_LIST = "CONSUME_REDIS_LIST";
+    String MQ_ZSET = "MQ_ZSET";
+    String CONSUME_REDIS_LIST_TASK = "CONSUME_REDIS_LIST_TASK";
+    String CONSUME_REDIS_ZSET_TASK = "CONSUME_REDIS_ZSET_TASK";
 }

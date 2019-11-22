@@ -12,15 +12,15 @@ import org.study.cloud.manage.service.RedisService;
  * @date 2019-11-21 11:04
  */
 @RestController
-@RequestMapping("redisList")
-public class RedisListController {
+@RequestMapping("redisZset")
+public class RedisZsetController {
 
     @Autowired
     private RedisService redisService;
 
-    //http://localhost:9040/redisList/publish
-    @GetMapping("publish")
-    public Object publish() {
-        return redisService.publish();
+    //http://localhost:9040/redisZset/publishDelayedMsg
+    @GetMapping("publishDelayedMsg")
+    public Object publishDelayedMsg() {
+        return redisService.publishDelayedMsg();
     }
 }

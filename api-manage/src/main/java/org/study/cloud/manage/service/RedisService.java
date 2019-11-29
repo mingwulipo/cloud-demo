@@ -1,7 +1,9 @@
 package org.study.cloud.manage.service;
 
 import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.HyperLogLogOperations;
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -18,6 +20,7 @@ import java.util.*;
  * @date 2019-11-21 11:05
  */
 @Service
+@Slf4j
 public class RedisService {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
@@ -67,4 +70,19 @@ public class RedisService {
         return set;
     }
 
+    public Object publishHyperLog() {
+        HyperLogLogOperations<String, String> hyperLogLogOperations = redisTemplate.opsForHyperLogLog();
+        hyperLogLogOperations.delete(RedisConstant.STATIS_UV);
+
+        //可以去重
+        //for (int j = 0; j < 2; j++) {
+            //for (int i = 0; i < 1000; i++) {
+                hyperLogLogOperations.add(RedisConstant.STATIS_UV, 1 + "");
+            //}
+        //}
+
+        Long size = hyperLogLogOperations.size(RedisConstant.STATIS_UV);
+        System.out.println(size);//1000
+        return size;
+    }
 }

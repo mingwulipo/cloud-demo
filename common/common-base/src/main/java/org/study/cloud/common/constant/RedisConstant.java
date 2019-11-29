@@ -9,6 +9,7 @@ public interface RedisConstant {
     String TOPIC = "TOPIC";
     String MQ_LIST = "MQ_LIST";
     String MQ_ZSET = "MQ_ZSET";
+    String STATIS_UV = "STATIS_UV";
     String CONSUME_REDIS_LIST_TASK = "CONSUME_REDIS_LIST_TASK";
     String CONSUME_REDIS_ZSET_TASK = "CONSUME_REDIS_ZSET_TASK";
 }

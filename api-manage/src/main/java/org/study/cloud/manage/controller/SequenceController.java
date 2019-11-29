@@ -19,6 +19,7 @@ public class SequenceController {
     @Autowired
     private SequenceService sequenceService;
 
+    //http://localhost:9040/sequence/list
     @GetMapping("list")
     public Result list(SequenceForm sequenceForm) {
         return sequenceService.list(sequenceForm);

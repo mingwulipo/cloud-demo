@@ -15,13 +15,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-            <!-- 排除Tomcat依赖 -->
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-tomcat</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -30,7 +23,7 @@
 
         <dependency>
             <groupId>org.study</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>common-base</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

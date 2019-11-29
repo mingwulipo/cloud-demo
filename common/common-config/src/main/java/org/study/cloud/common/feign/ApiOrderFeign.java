@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.study.cloud.common.form.OrderForm;
 import org.study.cloud.common.model.Result;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @author lipo
  * @version v1.0

@@ -15,7 +15,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Collections;
 
 /**
@@ -35,12 +34,12 @@ public class LimitFilter extends OncePerRequestFilter {
 
     private static final String LUA_SCRIPT = "local count = redis.call('GET', KEYS[1])\n" +
                     "if not count then\n" +
-                    "   redis.call('SET', KEYS[1], 1, 'EX', ARGS[1])\n" +
+                    "   redis.call('SET', KEYS[1], 1, 'EX', ARGV[1])\n" +
                     "   return false\n" +
                     "end\n" +
 
                     "redis.call('INCR', KEYS[1])\n" +
-                    "if (count + 1 > ARGS[2]) then\n" +
+                    "if (count + 1 > tonumber(ARGV[2])) then\n" +
                     "   return true\n" +
                     "end\n" +
 
@@ -68,18 +67,20 @@ public class LimitFilter extends OncePerRequestFilter {
             String result = "请求繁忙，已限流";
             log.error(result);
             responseWrapper.responseMessage(result);
+            return;
         }
 
         filterChain.doFilter(requestWrapper, responseWrapper);
     }
 
     private boolean limitFlow() {
-        Boolean limit10 = stringRedisTemplate.execute(redisScript, Collections.singletonList("LIMIT10"), Arrays.asList(10, 5));
+        Boolean limit10 = stringRedisTemplate.execute(redisScript, Collections.singletonList("LIMIT10"), "10", "3");
         if (Boolean.TRUE.equals(limit10)) {
             return true;
         }
 
-        Boolean limit100 = stringRedisTemplate.execute(redisScript, Collections.singletonList("LIMIT100"), Arrays.asList(100, 20));
+        Boolean limit100 = stringRedisTemplate.execute(redisScript, Collections.singletonList("LIMIT100"), "100", "5");
         return Boolean.TRUE.equals(limit100);
     }
+
 }
